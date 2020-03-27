@@ -1,2 +1,15 @@
 server:
   port: 8989
+zuul:
+  strip-prefix: false
+  routes: #路由规则
+    product: /myproduct/**
+    #    myproduct: #第一组规则  即要包装的名字
+    #      serviceId: product
+    #      path: /myproduct/**
+  ignored-patterns:  #不允许外部访问   排除路由
+    - /**/product/listForOrder
+  sensitive-headers: #敏感头设置为空，使其支持cookie
+#    - /myproduct/product/listForOrder
+#    - /product/product/listForOrder
+
